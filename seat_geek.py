@@ -1,5 +1,9 @@
 import unirest
 import json_to_csv.py
+import fileinput
+import json
+import csv
+import sys
 
 # These code snippets use an open-source library. http://unirest.io/python
 def send_request(event_id):
@@ -12,3 +16,18 @@ def send_request(event_id):
 	)
 
 	print response.body
+
+    l = []
+    #for line in fileinput.input(seat_geek.py):
+    for line in response.body:
+        l.append(line)
+    myjson = json.loads(''.join(l))
+    keys = {}
+    for i in myjson:
+        for k in i.keys():
+            keys[k] = 1
+    mycsv = csv.DictWriter(sys.stdout, fieldnames=keys.keys(),
+                       quoting=csv.QUOTE_MINIMAL)
+    mycsv.writeheader()
+    for row in myjson:
+        mycsv.writerow(row)
