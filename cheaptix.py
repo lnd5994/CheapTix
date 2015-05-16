@@ -1,6 +1,5 @@
-
-
 import csv
+import seat_geek.py
 import pandas as pd
 import math
 import numpy as np
