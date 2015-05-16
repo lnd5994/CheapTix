@@ -1,9 +1,13 @@
 import unirest
+<<<<<<< HEAD
 import fileinput
 import json
 import csv
 import sys
 
+=======
+import json_to_csv.py
+>>>>>>> 7988f9583fd6c30e5f8a2eaa326341d6c67c5250
 
 # These code snippets use an open-source library. http://unirest.io/python
 def send_request(event_id):
