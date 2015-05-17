@@ -2,9 +2,10 @@ import fileinput
 import json
 import csv
 import sys
+import seat_geek.py
 
 l = []
-for line in fileinput.input():
+for line in fileinput.input(seat_geek.py):
     l.append(line)
 myjson = json.loads(''.join(l))
 keys = {}

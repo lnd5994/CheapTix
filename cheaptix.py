@@ -12,7 +12,7 @@ from collections import Counter
 class Event(object):
 	def __setattr__(self, name, value):
 		self.__dict__[name] = value
-	def __init__(self, name, classification, cprice, rprice, city, dtp, popularity, availtix):
+	def __init__(self, name, cprice, rprice, city, dtp, popularity, availtix, classification):
 		self.cprice = cprice
 		self.rprice = rprice
 		self.city = city
@@ -40,47 +40,54 @@ class Event(object):
 
 
 
-def NearestNeighbor(train, Event):
+def NearestNeighbor(train, Event_input):
 	dataFrame = pd.read_csv(train, na_values=["?"])
 	dataFrameValidate = pd.read_csv(validate)
 
 	attributes = list(dataFrame.columns.values)
 	classification_label = attributes[len(attributes) - 1]
 
-	events = # here we need to make a vector of events from the csv file
+	events = 0 * len(dataFrame)
 
-	first_event = events(1)
-	lowest_dist=distance(Event, first_event)
+	for row in range(len(dataFrame)):
+		events[row] = Event(dataFrame[row][0], dataFrame[row][1], dataFrame[row][2], dataFrame[row][3], dataFrame[row][4], dataFrame[row][5], dataFrame[row][6], dataFrame[row][7])
+
+	first_event = events[0]
+	lowest_dist=distance(Event_input, first_event)
 
 	for event in events:
-		dist = distance(event, Event)
+		dist = distance(event, Event_input)
 		if dist < lowest_dist:
 			lowest_dist = dist
 			choice = event
 
-	Event.classification = choice.classification
+	Event_input.classification = choice.classification
 
-	return Event.classification
-
-
+	return Event_input.classification
 
 
-	def ThreeNearestNeighbor(train, Event):
+
+
+	def ThreeNearestNeighbor(train, Event_input):
 	dataFrame = pd.read_csv(train, na_values=["?"])
 	dataFrameValidate = pd.read_csv(validate)
 
 	attributes = list(dataFrame.columns.values)
 	classification_label = attributes[len(attributes) - 1]
 
-	events = # here we need to make a vector of events from the csv file
+	events = 0 * len(dataFrame)
+
+	for row in range(len(dataFrame)):
+		events[row] = Event(dataFrame[row][0], dataFrame[row][1], dataFrame[row][2], dataFrame[row][3], dataFrame[row][4], dataFrame[row][5], dataFrame[row][6], dataFrame[row][7])
 	
-	lowest_dist=10000000000
+	first_event = events[0]
+	lowest_dist=distance(Event_input, first_event)
 
 	neighbors = []
 
 	for i in range(3):
 		for event in events:
-			dist = distance(event, Event)
+			dist = distance(event, Event_input)
 			if dist < lowest_dist:
 				lowest_dist = dist
 				choice = event
@@ -98,9 +105,9 @@ def NearestNeighbor(train, Event):
 
 	data=Counter(neighbor_classifications)
 
-	Event.classification = data.most_common(1)
+	Event_input.classification = data.most_common(1)
 
-	return Event.classification
+	return Event_input.classification
 
 
 
