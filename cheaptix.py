@@ -94,7 +94,8 @@ def NearestNeighbor(train, Event_input):
 		neighbors.append(choice)
 		events.remove(choice)
 
-		lowest_dist=10000000000
+		first_event = events[0]
+		lowest_dist=distance(Event_input, first_event)
 
 	neighbor_classifications = []
 
@@ -113,14 +114,15 @@ def NearestNeighbor(train, Event_input):
 
 
 def distance(event1, event2):
+	d0 = (event1.name == event2.name)^2
 	d1 = (event1.cprice - event2.cprice)^2
 	d2 = (event1.rprice - event2.rprice)^2
 	d3 = (event1.dtp - event2.dtp)^2
 	d4 = (event1.popularity - event2.popularity)^2
 	d5 = (event1.availtix - event2.availtix)^2
-	d6 = # distance between two cities
+	d6 = (event1.city == event2.city)^2
 
-	return sqrt(d1 + d2 + d3 + d4 + d5 + d6)
+	return sqrt(d0 + d1 + d2 + d3 + d4 + d5 + d6)
 
 
 
