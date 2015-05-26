@@ -12,14 +12,13 @@ from collections import Counter
 class Event(object):
 	def __setattr__(self, name, value):
 		self.__dict__[name] = value
-	def __init__(self, name, cprice, rprice, city, dtp, popularity, availtix, classification):
+	def __init__(self, name, cprice, rprice, city, dtp, vencap, classification):
 		self.name = name
 		self.cprice = cprice
 		self.rprice = rprice
 		self.city = city
 		self.dtp = dtp # Days until performance
-		self.popularity = popularity
-		self.availtix = availtix
+		self.vencap = vencap
 		self.classification = classification
 	def __getattr__(self, key):
 		if key == "name":
@@ -32,21 +31,54 @@ class Event(object):
 			return self.city
 		elif key == "dtp":
 			return self.dtp
-		elif key == "popularity":
-			return self.popularity
-		elif key == "availtix":
-			return self.availtix
+		elif key == "vencap":
+			return self.vencap
 		elif key == "classification":
 			return self.classification
 		else:
 			raise AttributeError
 
 
+def RunNN(train, information):
+	dataFrame = pd.read_csv(information, na_values=["?"])
+	attributes = list(dataFrame.columns.values)
+	classification_label = attributes[len(attributes) - 1]
+	events = []
+	for row in range(len(dataFrame)):
+		events.append(Event(dataFrame.iloc[row][0], dataFrame.iloc[row][1], dataFrame.iloc[row][2], dataFrame.iloc[row][3], dataFrame.iloc[row][4], dataFrame.iloc[row][5], dataFrame.iloc[row][6]))
+	i=0
+	for each in events:
+		print each.name, ': ', NearestNeighbor(train, each)
+	# 	dataFrame.iloc[i][6] = NearestNeighbor(train, each)
+	# 	i=i+1
+	# dataFrame.to_csv('out.csv')
+	# information = 'out.csv'
 
+	return 1
 
-def NearestNeighbor(train):
-	Event_input = Event('test',10,25,'New York',10,10,10,'test_class')
+def Run3NN(train, information):
+	dataFrame = pd.read_csv(information, na_values=["?"])
+	attributes = list(dataFrame.columns.values)
+	classification_label = attributes[len(attributes) - 1]
+	events = []
+	for row in range(len(dataFrame)):
+		events.append(Event(dataFrame.iloc[row][0], dataFrame.iloc[row][1], dataFrame.iloc[row][2], dataFrame.iloc[row][3], dataFrame.iloc[row][4], dataFrame.iloc[row][5], dataFrame.iloc[row][6]))
+	i=0
+	for each in events:
+		dataFrame.iloc[i][6] = ThreeNearestNeighbor(train, each)
+		i=i+1
+	dataFrame.to_csv('out.csv', sep='/t')
+	information = 'out.csv'
 
+def CSV2event(inputline):
+	dataFrame = pd.read_csv(inputline, na_values=["?"])
+	attributes = list(dataFrame.columns.values)
+	classification_label = attributes[len(attributes) - 1]
+	event = Event(dataFrame.iloc[0][0], dataFrame.iloc[0][1], dataFrame.iloc[0][2], dataFrame.iloc[0][3], dataFrame.iloc[0][4], dataFrame.iloc[0][5], dataFrame.iloc[0][6])
+	print event.classification
+	return event
+
+def NearestNeighbor(train, Event_input):
 	dataFrame = pd.read_csv(train, na_values=["?"])
 
 	attributes = list(dataFrame.columns.values)
@@ -55,7 +87,7 @@ def NearestNeighbor(train):
 	events = []
 
 	for row in range(len(dataFrame)):
-		events.append(Event(dataFrame.iloc[row][0], dataFrame.iloc[row][1], dataFrame.iloc[row][2], dataFrame.iloc[row][3], dataFrame.iloc[row][4], dataFrame.iloc[row][5], dataFrame.iloc[row][6], dataFrame.iloc[row][7]))
+		events.append(Event(dataFrame.iloc[row][0], dataFrame.iloc[row][1], dataFrame.iloc[row][2], dataFrame.iloc[row][3], dataFrame.iloc[row][4], dataFrame.iloc[row][5], dataFrame.iloc[row][6]))
 
 	first_event = events[0]
 	lowest_dist=distance(Event_input, first_event)
@@ -73,8 +105,7 @@ def NearestNeighbor(train):
 
 
 
-def ThreeNearestNeighbor(train):
-	Event_input = Event('test',10,25,'New York',10,10,10,'test_class')
+def ThreeNearestNeighbor(train, Event_input):
 
 	dataFrame = pd.read_csv(train, na_values=["?"])
 
@@ -84,7 +115,7 @@ def ThreeNearestNeighbor(train):
 	events = []
 
 	for row in range(len(dataFrame)):
-		events.append(Event(dataFrame.iloc[row][0], dataFrame.iloc[row][1], dataFrame.iloc[row][2], dataFrame.iloc[row][3], dataFrame.iloc[row][4], dataFrame.iloc[row][5], dataFrame.iloc[row][6], dataFrame.iloc[row][7]))
+		events.append(Event(dataFrame.iloc[row][0], dataFrame.iloc[row][1], dataFrame.iloc[row][2], dataFrame.iloc[row][3], dataFrame.iloc[row][4], dataFrame.iloc[row][5], dataFrame.iloc[row][6]))
 	
 	first_event = events[0]
 	lowest_dist=distance(first_event, Event_input)
@@ -125,12 +156,11 @@ def distance(event1, event2):
 	d1 = math.pow((event1.cprice - event2.cprice),2)
 	d2 = math.pow((event1.rprice - event2.rprice),2)
 	d3 = math.pow((event1.dtp - event2.dtp),2)
-	d4 = math.pow((event1.popularity - event2.popularity),2)
-	d5 = math.pow((event1.availtix - event2.availtix),2)
+	d4 = math.pow((event1.vencap - event2.vencap),2)
 	# d6 = (event1.city == event2.city)^2
 
 
-	return math.sqrt(d1 + d2 + d3 + d4 + d5)
+	return math.sqrt(d1 + d2 + d3 + d4)
 
 
 
