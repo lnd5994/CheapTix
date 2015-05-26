@@ -1,0 +1,8 @@
+name,cprice,rprice,city,dtp,popularity,availtix,classification
+'Miley Cyrus',69,71,'New York',10,5,5,'buy'
+'Dispatch',20,102,'Chicago',22,3,3,'wait'
+'Moonlapse',200,210,'Chicago',10,19,7,'buy'
+'RL Grime',39,44,'New York',2,21,9,'wait'
+'Troiboi',20,5,'Seattle',7,100,1,'wait'
+'AC/DC',35,17,'Chicago',9,10,0,'buy'
+'Ben Weiss',100,80,'Atlanta',4,9,0,'wait'
