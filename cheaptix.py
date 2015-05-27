@@ -65,10 +65,13 @@ def Run3NN(train, information):
 		events.append(Event(dataFrame.iloc[row][0], dataFrame.iloc[row][1], dataFrame.iloc[row][2], dataFrame.iloc[row][3], dataFrame.iloc[row][4], dataFrame.iloc[row][5], dataFrame.iloc[row][6]))
 	i=0
 	for each in events:
-		dataFrame.iloc[i][6] = ThreeNearestNeighbor(train, each)
-		i=i+1
-	dataFrame.to_csv('out.csv', sep='/t')
-	information = 'out.csv'
+		print each.name, ': ', ThreeNearestNeighbor(train, each)
+	# 	dataFrame.iloc[i][6] = NearestNeighbor(train, each)
+	# 	i=i+1
+	# dataFrame.to_csv('out.csv')
+	# information = 'out.csv'
+
+	return 1
 
 def CSV2event(inputline):
 	dataFrame = pd.read_csv(inputline, na_values=["?"])
@@ -79,6 +82,7 @@ def CSV2event(inputline):
 	return event
 
 def NearestNeighbor(train, Event_input):
+	print '1-NN'
 	dataFrame = pd.read_csv(train, na_values=["?"])
 
 	attributes = list(dataFrame.columns.values)
@@ -106,6 +110,7 @@ def NearestNeighbor(train, Event_input):
 
 
 def ThreeNearestNeighbor(train, Event_input):
+	print '3-NN'
 
 	dataFrame = pd.read_csv(train, na_values=["?"])
 

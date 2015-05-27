@@ -1,9 +1,14 @@
 name,current_price,retail_price,city,dtp,venue_capacity,classification
+Ciara,54,29.5,San_Francisco,9,2325,Wait
+Ciara,49,29.5,San_Francisco,7,2325,Buy
+They_Might_Be_Giants,44.97,25,New_York,9,550,Wait
+They_Might_Be_Giants,32,25,New_York,7,550,Buy
+Milky_Chance,51,33,Chicago,64,4500,Wait
 Milky_Chance,39,33,Chicago,62,4500,Buy
 Beats_Antique,102,45,Chicago,42,4500,Buy
 Beats_Antique,119.99,45,Chicago,40,4500,Wait
 Erykah_badu,41,19,Chicago,49,5000,Wait
-Erykah_badu,40,19,Chicago,,5000,Wait
+Erykah_badu,40,19,Chicago,47,5000,Wait
 Waka_Flocka_Flame,36.4,30,Silver_Spring,63,2000,Wait
 Waka_Flocka_Flame,35,30,Silver_Spring,61,2000,Wait
 alt-J,42,52.25,Philadelphia,130,6500,Buy
@@ -25,9 +30,9 @@ Major_Lazer,45,45,Las_Vegas,10,3000,Wait
 The_Psychedelic_Furs,55,30,Seattle,73,1100,Wait
 The_Psychedelic_Furs,53,30,Seattle,71,1100,Wait
 A-trak,65.85,24,Boston,14,800,Buy
-A-trak,77.4,,Boston,12,800,Wait
+A-trak,77.4,24,Boston,12,800,Wait
 Minstry,117.71,69.69,Houston,13,1650,Wait
-Minstry,117.71,,Houston,11,1650,Wait
+Minstry,117.71,69.69,Houston,11,1650,Wait
 Diplo,150,25,Las_Vegas,32,3000,Wait
 Diplo,150,25,Las_Vegas,30,3000,Wait
 Nico&Vinz,17.75,25,San_Francisco,15,500,Wait
@@ -39,8 +44,3 @@ Delta_Spirit,129,20,Portland,18,249,Wait
 The_Ting_Tings,59.95,27.5,San_Francisco,40,2325,Buy
 The_Ting_Tings,59.96,27.5,San_Francisco,38,2325,Wait
 Tori_Kelly,37.31,22,Boston,29,800,Buy
-Tori_Kelly,43,22,Boston,27,800,Wait
-Deadmau5,189.49,145,New_York,15,2000,Wait
-Deadmau5,132,145,New_York,13,2000,Wait
-Flume,40,40,Miami,25,994,Buy
-Flume,99.98,40,Miami,23,994,Wait
